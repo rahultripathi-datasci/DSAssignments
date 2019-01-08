@@ -1,0 +1,41 @@
+
+public class EmployeeNode {
+	int empId, attCount;
+	EmployeeNode left, right;
+
+	//Constructor
+	public EmployeeNode(int item) 
+    { 
+		empId = item;
+		attCount=1;
+        left = right = null; 
+    } 
+		
+	// include all basic functions for the node
+	
+	//Adding a node
+	
+	public EmployeeNode addRecursive(EmployeeNode current, int item) {
+	    if (current == null) {
+	        return new EmployeeNode(item);
+	    }
+	 
+	    if (item < current.empId) {
+	        current.left = addRecursive(current.left, item);
+	    } else if (item > current.empId) {
+	        current.right = addRecursive(current.right, item);
+	    } else {
+	        // value already exists
+	        current.attCount=current.attCount+1;
+	    }
+	 
+	    return current;
+	}
+	
+	public void add(int item) {
+	    root = addRecursive(root, item);
+	}
+	
+	
+	
+}

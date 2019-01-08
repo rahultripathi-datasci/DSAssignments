@@ -1,0 +1,94 @@
+import java.util.Scanner;
+import java.io.*;
+public class EmployeeAttendance {
+
+	public static void main(String[] args) throws Exception{
+		File file = new File("input.txt");
+		Scanner sc = new Scanner(file);
+		EmployeeBT bt = new EmployeeBT();
+		while (sc.hasNextLine()) {
+			bt.add(Integer.parseInt(sc.nextLine()));
+		}
+		sc.close();
+		Scanner scan = new Scanner(System.in);
+		int choice, empId;
+		do {
+			System.out.print("\n *******Attendance Monitoring System********"); 
+			System.out.print("\n 1. How many employees came today?"); 
+			System.out.print("\n 2. Did a particular employee came today?"); 
+			System.out.print("\n 3. How often did an employee enter into the office?"); 
+			System.out.print("\n 4. Which employee moves out of office most number of times?"); 
+			System.out.print("\n 5. Who all came within a range of IDs, and how often they entered? "); 
+			System.out.print("\n 6x`. Exit \n Choice:"); 
+			choice = scan.nextInt(); 
+			switch(choice) {
+			 case 1:
+				 System.out.println("Total number of " + bt.getHeadCount(bt.getRoot()) + " Employee(s) came today.");
+			break;
+			 case 2:
+				 System.out.print("\n\n Enter the Employee Id: ");
+				 empId= scan.nextInt();
+				 if(bt.searchID(empId))
+					 System.out.println("Yes, the Employee came to the office premises.");
+				 else
+					 System.out.println("No, the Employee didn't came.");
+			break;
+			 case 3:
+				 System.out.print("\n\n Enter the Employee Id: ");
+				 empId= scan.nextInt();
+				 System.out.println("Employee with ID-" + empId + " has entered " + bt.howOften(bt.getRoot(), empId) + " times.");
+			break;
+			 case 4:
+				 System.out.println("Employee  " + bt.frequentVisitor(bt.getRoot()) + " moves most number of times.");
+			break;
+			 case 5:
+				 System.out.print("\n\n Enter the Employee Id for Lower Range(from): ");
+				 empId= scan.nextInt();
+				 System.out.print("\nEnter the Employee Id for Higher Range(to): ");
+				 int empId2= scan.nextInt();
+				 try {
+						bt.printRangePresent(bt.getRoot(), empId, empId2);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			 break;
+			 default:
+				 return;
+				 
+			}
+				
+		}while(choice !=6);
+		scan.close(); 
+	}
+}
+			
+//		
+//		 bt.add(6);
+//		    bt.add(4);
+//		    bt.add(8);
+//		    bt.add(4);
+//		    bt.add(8);
+//		    
+//		    System.out.println("root===" + bt.root.empId);
+//		    System.out.println("left_empid===" + bt.root.left.empId);
+//		    System.out.println("right_empid===" + bt.root.right.empId);
+//		    System.out.println("left_count===" + bt.root.left.attCount);
+//		    System.out.println("right_count===" + bt.root.right.attCount);
+//		    
+//		    System.out.println("searchID===" + bt.searchID(6));
+//		    System.out.println("HeadCount===" + bt.getHeadCount(bt.getRoot()));
+////		    EmployeeNode xx = bt.get_employee_data(bt.getRoot(), 7);
+////		    System.out.println("How often===" + bt.get_employee_data(bt.getRoot(), 8));
+//		    System.out.println("How often===" +bt.howOften(bt.getRoot(), 0));
+//		    System.out.println("max visit===" +bt.get_max_vist(bt.getRoot()));
+//		    System.out.println("max visit employee id===" +bt.frequentVisitor(bt.getRoot()));
+//		    bt.condition_match(bt.getRoot(), 2, 9);
+//		    try {
+//				bt.printRangePresent(bt.getRoot(), 2, 9);
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//	}
+//}

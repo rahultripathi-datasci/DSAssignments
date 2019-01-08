@@ -1,0 +1,25 @@
+
+public class EmployeeAttendance {
+
+	public static void main(String[] args) {
+		EmployeeBT bt = new EmployeeBT();
+		 bt.add(6);
+		    bt.add(4);
+		    bt.add(8);
+		    bt.add(4);
+		    bt.add(8);
+		    
+		    System.out.println("root===" + bt.root.empId);
+		    System.out.println("left_empid===" + bt.root.left.empId);
+		    System.out.println("right_empid===" + bt.root.right.empId);
+		    System.out.println("left_count===" + bt.root.left.attCount);
+		    System.out.println("right_count===" + bt.root.right.attCount);
+		    
+		    System.out.println("searchID===" + bt.searchID(6));
+		    System.out.println("HeadCount===" + bt.getHeadCount(bt.getRoot()));
+//		    EmployeeNode xx = bt.get_employee_data(bt.getRoot(), 7);
+//		    System.out.println("How often===" + bt.get_employee_data(bt.getRoot(), 8));
+		    System.out.println("How often===" +bt.howOften(bt.getRoot(), 8));
+	}
+
+}
